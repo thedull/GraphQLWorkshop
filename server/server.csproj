@@ -16,4 +16,8 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Issues\Issues.csproj" />
+  </ItemGroup>
+
 </Project>
