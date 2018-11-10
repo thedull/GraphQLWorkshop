@@ -26,6 +26,16 @@ namespace Issues.Schemas
                     return issues.CreateAsync(issue);
                 }
             );
+            FieldAsync<IssueType>(
+                "startIssue",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "issueId"}),
+                resolve: async context =>
+                {
+                    var issueId = context.GetArgument<string>("issueId");
+                    return await context.TryAsyncResolve(
+                        async c => await issues.StartAsync(issueId));
+                }
+            );
         }
     }
 }

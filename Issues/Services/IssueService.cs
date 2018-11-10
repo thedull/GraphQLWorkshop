@@ -33,6 +33,23 @@ namespace Issues.Services
         {
             return Task.FromResult(_issues.AsEnumerable());
         }
+
+        private Issue GetById(string id)
+        {
+            var issue = _issues.SingleOrDefault(i => Equals(i.Id, id));
+            if (issue == null)
+            {
+                throw new ArgumentException(string.Format("Issue Id '{0}' is invalid", id));
+            }
+            return issue;
+        }
+
+        public Task<Issue> StartAsync(string issueId)
+        {
+            var issue = GetById(issueId);
+            issue.Start();
+            return Task.FromResult(issue);    
+        }
     }
         
     public interface IIssueService
@@ -40,5 +57,6 @@ namespace Issues.Services
         Task<Issue> GetIssueByIdAsync(string id);
         Task<IEnumerable<Issue>> GetIssuesAsync();
         Task<Issue> CreateAsync(Issue issue);
+        Task<Issue> StartAsync(string issueId);
     }
 }  
