@@ -29,6 +29,9 @@ namespace server
             services.AddSingleton<IssuesSchema>();
             services.AddSingleton<IssueCreateInputType>();
             services.AddSingleton<IssuesMutation>();
+            services.AddSingleton<IssuesSubscription>();
+            services.AddSingleton<IssueEventType>();
+            services.AddSingleton<IIssueEventService, IssueEventService>();
             services.AddSingleton<IDependencyResolver>(
                 c => new FuncDependencyResolver(type => c.GetRequiredService(type)));
             services.AddGraphQLHttp();

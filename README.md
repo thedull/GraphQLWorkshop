@@ -50,9 +50,27 @@ This is the repository for the corresponding workshop to be covered during dotNe
 - Added the new operation to mutations class.
 - Verified we can start progress by executing the mutation.
 
-## 2_3_Update_Status
+### 2_3_Update_Status
 
-This is the end of section 2. Off to section 3. Best is yet to come.
+- ~~Checkpoint for section 2.~~
+
+### 3_1_Subscriptions
+
+## 3_2_Create_Issue_Subscription
+
+This is the end of section 3. 
+
+There's a lot of other cool things you can try from this point:
+
+- Use the `Bogus` library to generate fake data and populate the properties of the user we didn't touch, like Avatar, Email and so on.
+- Try to change the implementation of the service to use a real DB persistance with EF Core, so you can see data coming and going in your database.
+- Host this service on an Azure Linux machine and share your API with the world.
+- Consume the API with a client like [Apollo](https://www.apollographql.com/docs/react/).
+- Any other you can think of... 😎
+
+Feel free to fork or create issues on the repo. I'll try to take a look as soon as I can.
+
+Cheers!
 
 # Credits
 Gabriel Trujillo C. <joaqt23@gmail.com>
