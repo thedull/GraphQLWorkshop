@@ -18,6 +18,13 @@ namespace Issues.Services
             _issues.Add(new Issue("Tests failing", "Tests for services are failing", DateTime.Now.AddHours(2), 3, "9282CBA7-0499-4769-919C-B9E35437008A"));
             _issues.Add(new Issue("Wrong font size", "The basic font size should be 12px", DateTime.Now.AddHours(2), 4, "8902E024-E54D-430F-B600-3B3CB22F591B")); 
         }
+
+        public Task<Issue> CreateAsync(Issue issue)
+        {
+            _issues.Add(issue);
+            return Task.FromResult(issue);
+        }
+
         public Task<Issue> GetIssueByIdAsync(string id)
         {
             return Task.FromResult(_issues.Single(o => Equals(o.Id, id)));
@@ -32,5 +39,6 @@ namespace Issues.Services
     {
         Task<Issue> GetIssueByIdAsync(string id);
         Task<IEnumerable<Issue>> GetIssuesAsync();
+        Task<Issue> CreateAsync(Issue issue);
     }
 }  
