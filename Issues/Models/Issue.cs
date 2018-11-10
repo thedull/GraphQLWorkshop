@@ -11,6 +11,7 @@ namespace Issues.Models
             Created = created;
             UserId = userId;
             this.Id = Id;
+            Status = IssueStatuses.REPORTED;
         }
 
         public string Name { get; set; }
@@ -18,7 +19,12 @@ namespace Issues.Models
         public DateTime Created { get; private set; }
         public int UserId { get; set; }
         public string Id { get; private set; }
-        public IssueStatuses Status { get; set; }
+        public IssueStatuses Status { get; private set; }
+
+        public void Start()
+        {
+            Status = IssueStatuses.IN_PROGRESS;
+        }
     }
 
     [Flags]

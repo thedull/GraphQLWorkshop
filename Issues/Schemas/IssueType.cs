@@ -19,6 +19,9 @@ namespace Issues.Schemas
                 resolve: context => users.GetUserByIdAsync(context.Source.UserId));
             Field(f => f.Created)
                 .Description("Creation datetime");
+            Field<IssueStatusesEnum>(
+                "status",
+                resolve: context => context.Source.Status);
         }
     }
 }
