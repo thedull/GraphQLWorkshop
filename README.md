@@ -46,7 +46,7 @@ This is the repository for the corresponding workshop to be covered during dotNe
 
 - ~~Added logic for initial state and a state change inside the issues model.~~
 - ~~Added the corresponding field in the Graph type.~~
-- ~~Put new methods to deal with that state change on issues service interface and implementation class. ~~
+- ~~Put new methods to deal with that state change on issues service interface and implementation class.~~
 - ~~Added the new operation to mutations class.~~
 - ~~Verified we can start progress by executing the mutation.~~
 
@@ -131,11 +131,11 @@ NOTE: This is a bit long process, since there's a lot of classes involved. For t
             {
                 _eventStream.OnError(exception);
             }
-            public IssueEvent AddEvent(IssueEvent orderEvent)
+            public IssueEvent AddEvent(IssueEvent issueEvent)
             {
-                AllEvents.Push(orderEvent);
-                _eventStream.OnNext(orderEvent);
-                return orderEvent;
+                AllEvents.Push(issueEvent);
+                _eventStream.OnNext(issueEvent);
+                return issueEvent;
             }
             public IObservable<IssueEvent> EventStream()
             {
@@ -146,7 +146,7 @@ NOTE: This is a bit long process, since there's a lot of classes involved. For t
         {
             ConcurrentStack<IssueEvent> AllEvents { get; }
             void AddError(Exception exception);
-            IssueEvent AddEvent(IssueEvent orderEvent);
+            IssueEvent AddEvent(IssueEvent issueEvent);
             IObservable<IssueEvent> EventStream();
         }
     } 
@@ -181,6 +181,22 @@ NOTE: This is a bit long process, since there's a lot of classes involved. For t
         return Task.FromResult(issue);
     }    
     ``` 
+
+    4.4. Also update the `StartAsync` method as follows:
+    ```csharp
+    public Task<Issue> StartAsync(string issueId)
+    {
+        var issue = GetById(issueId);
+        issue.Start();
+        var issueEvent = new IssueEvent(
+            issue.Id, 
+            issue.Name,
+            IssueStatuses.IN_PROGRESS,
+            DateTime.Now);
+        _events.AddEvent(issueEvent);
+        return Task.FromResult(issue);
+    }
+    ```
 
 5. Create a new class file inside `Schemas` named `IssuesSubscription.cs` and add this into it (I know it's a bit long, just 🐻  with me):
     ```csharp
