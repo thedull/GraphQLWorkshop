@@ -10,7 +10,7 @@ namespace Issues.Schemas
             AddValue("REPORTED", "Issue was reported", 2);
             AddValue("IN_PROGRESS", "Issue is in progress", 4);
             AddValue("FIXED", "Issue is fixed", 8);
-            AddValue("CANCELLED", "Issue was cancelled", 1);
+            AddValue("CANCELLED", "Issue was cancelled", 16);
         }
     }
 }

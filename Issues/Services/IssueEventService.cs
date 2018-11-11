@@ -18,11 +18,11 @@ namespace Issues.Services
         {
             _eventStream.OnError(exception);
         }
-        public IssueEvent AddEvent(IssueEvent orderEvent)
+        public IssueEvent AddEvent(IssueEvent issueEvent)
         {
-            AllEvents.Push(orderEvent);
-            _eventStream.OnNext(orderEvent);
-            return orderEvent;
+            AllEvents.Push(issueEvent);
+            _eventStream.OnNext(issueEvent);
+            return issueEvent;
         }
         public IObservable<IssueEvent> EventStream()
         {
@@ -33,7 +33,7 @@ namespace Issues.Services
     {
         ConcurrentStack<IssueEvent> AllEvents { get; }
         void AddError(Exception exception);
-        IssueEvent AddEvent(IssueEvent orderEvent);
+        IssueEvent AddEvent(IssueEvent issueEvent);
         IObservable<IssueEvent> EventStream();
     }
 } 

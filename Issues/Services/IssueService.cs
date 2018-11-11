@@ -56,6 +56,12 @@ namespace Issues.Services
         {
             var issue = GetById(issueId);
             issue.Start();
+            var issueEvent = new IssueEvent(
+                issue.Id, 
+                issue.Name, 
+                IssueStatuses.IN_PROGRESS,
+                DateTime.Now);
+            _events.AddEvent(issueEvent);
             return Task.FromResult(issue);    
         }
     }

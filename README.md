@@ -44,11 +44,11 @@ This is the repository for the corresponding workshop to be covered during dotNe
 
 ### 2_2_Create_Issue
 
-- Added logic for initial state and a state change inside the issues model.
-- Added the corresponding field in the Graph type.
-- Put new methods to deal with that state change on issues service interface and implementation class. 
-- Added the new operation to mutations class.
-- Verified we can start progress by executing the mutation.
+- ~~Added logic for initial state and a state change inside the issues model.~~
+- ~~Added the corresponding field in the Graph type.~~
+- ~~Put new methods to deal with that state change on issues service interface and implementation class.~~
+- ~~Added the new operation to mutations class.~~
+- ~~Verified we can start progress by executing the mutation.~~
 
 ### 2_3_Update_Status
 
@@ -56,13 +56,20 @@ This is the repository for the corresponding workshop to be covered during dotNe
 
 ### 3_1_Subscriptions
 
+- Created an event model and its corresponding graph type.
+- Created a service interface and its implementation for these events.
+- Updated the Issues service to trigger the events.
+- Created the respective subscription and upgraded the schema to utilize it.
+- Updated the DI container.
+- Tested the subscriptions on different browser windows. 
+
 ## 3_2_Create_Issue_Subscription
 
 This is the end of section 3. 
 
 There's a lot of other cool things you can try from this point:
 
-- Use the `Bogus` library to generate fake data and populate the properties of the user we didn't touch, like Avatar, Email and so on.
+- Use the Bogus library to generate fake data and populate the properties of the user we didn't touch, like Avatar, Email and so on.
 - Try to change the implementation of the service to use a real DB persistance with EF Core, so you can see data coming and going in your database.
 - Host this service on an Azure Linux machine and share your API with the world.
 - Consume the API with a client like [Apollo](https://www.apollographql.com/docs/react/).
